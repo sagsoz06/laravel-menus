@@ -333,7 +333,15 @@ class MenuItem implements ArrayableContract
      */
     public function getIcon($default = null, $show = true)
     {
-        return !is_null($this->icon) && $this->icon != "" && $show == true ? '<i class="' . $this->icon . '"></i>' : $default;
+        if ($this->icon !== null && $this->icon !== '' && $show == true ) {
+            return '<i class="' . $this->icon . '"></i>';
+        }
+        if ($default === null && $show == true) {
+            return $default;
+        } else {
+            return $this->icon;
+        }
+        return '<i class="' . $default . '"></i>';
     }
 
     /**
